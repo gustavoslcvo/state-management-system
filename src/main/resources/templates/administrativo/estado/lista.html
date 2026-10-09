@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Lista de Estados</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+    <div class="container-fluid">
+
+       <span class="navbar-brand mb-0 h1">
+    state-management-system
+</span>
+
+    </div>
+
+</nav>
+
+<div class="container mt-4">
+
+    <h2>Lista de Estados</h2>
+
+    <table class="table table-striped"
+           id="tabela">
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sigla</th>
+            <th>Ações</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="estado : ${estados}">
+
+            <td th:text="${estado.id}"></td>
+
+            <td th:text="${estado.nome}"></td>
+
+            <td th:text="${estado.sigla}"></td>
+
+            <td>
+
+                <a class="btn btn-warning btn-sm"
+                   th:href="@{/editarEstado/{id}(id=${estado.id})}">
+                    Editar
+                </a>
+
+                <a class="btn btn-danger btn-sm"
+                   th:href="@{/removerEstado/{id}(id=${estado.id})}">
+                    Remover
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <a class="btn btn-primary"
+       href="/cadastroEstado">
+        Novo Estado
+    </a>
+
+    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+        Voltar
+    </button>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+</script>
+
+
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#tabela').DataTable();
+
+    });
+
+</script>
+
+</body>
+</html>
